@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Pagamento PIX - eFootball Brasil</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#000;
+      overflow:hidden;
+      color:white;
+      min-height:100vh;
+      position:relative;
+    }
+
+    /* FUNDO ESTÁDIO */
+
+    .stadium{
+      position:fixed;
+      top:0;
+      left:0;
+
+      width:100%;
+      height:100%;
+
+      object-fit:cover;
+
+      opacity:0.12;
+
+      z-index:-4;
+    }
+
+    /* OVERLAY VERDE */
+
+    .overlay{
+      position:fixed;
+      inset:0;
+
+      background:linear-gradient(
+        90deg,
+        rgba(0,255,102,0.15),
+        rgba(0,0,0,0.92)
+      );
+
+      z-index:-3;
+    }
+
+    /* NEYMAR */
+
+    .neymar{
+      position:fixed;
+
+      left:-120px;
+      bottom:0;
+
+      height:100vh;
+
+      object-fit:contain;
+
+      opacity:0.95;
+
+      z-index:-2;
+
+      filter:
+      drop-shadow(0 0 40px rgba(0,255,102,0.3))
+      brightness(0.95);
+    }
+
+    /* BRILHO VERDE */
+
+    .green-light{
+      position:fixed;
+
+      left:-200px;
+      top:-100px;
+
+      width:700px;
+      height:700px;
+
+      background:radial-gradient(
+        circle,
+        rgba(0,255,102,0.30),
+        transparent 70%
+      );
+
+      z-index:-1;
+    }
+
+    /* CONTAINER */
+
+    .container{
+      width:100%;
+      min-height:100vh;
+
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+
+      padding-right:8%;
+    }
+
+    /* BOX PAGAMENTO */
+
+    .payment-box{
+
+      width:100%;
+      max-width:480px;
+
+      background:rgba(0,0,0,0.72);
+
+      border:1px solid rgba(0,255,102,0.25);
+
+      backdrop-filter:blur(12px);
+
+      border-radius:30px;
+
+      padding:45px;
+
+      box-shadow:
+      0 0 40px rgba(0,255,102,0.12);
+
+    }
+
+    .tag{
+      color:#00ff66;
+      font-weight:bold;
+      letter-spacing:3px;
+      margin-bottom:15px;
+      font-size:14px;
+    }
+
+    h1{
+      font-size:55px;
+      line-height:1.1;
+      margin-bottom:20px;
+    }
+
+    h1 span{
+      color:#00ff66;
+    }
+
+    .desc{
+      color:#bcbcbc;
+      line-height:1.7;
+      margin-bottom:35px;
+    }
+
+    /* PIX */
+
+    .pix-area{
+
+      background:#050505;
+
+      border:1px solid rgba(0,255,102,0.35);
+
+      border-radius:18px;
+
+      padding:18px;
+
+      margin-bottom:25px;
+
+    }
+
+    .pix-title{
+      color:#00ff66;
+      font-size:14px;
+      margin-bottom:10px;
+    }
+
+    .pix-key{
+      font-size:18px;
+      font-weight:bold;
+      word-break:break-all;
+    }
+
+    /* BOTÃO */
+
+    button{
+
+      width:100%;
+
+      height:60px;
+
+      border:none;
+
+      border-radius:18px;
+
+      background:#00ff66;
+
+      color:black;
+
+      font-size:18px;
+
+      font-weight:bold;
+
+      cursor:pointer;
+
+      transition:0.3s;
+    }
+
+    button:hover{
+
+      transform:scale(1.02);
+
+      background:#00d95c;
+    }
+
+    .secure{
+      margin-top:20px;
+      color:#9f9f9f;
+      text-align:center;
+      font-size:14px;
+    }
+
+    /* MOBILE */
+
+    @media(max-width:900px){
+
+      .container{
+        justify-content:center;
+        padding:20px;
+      }
+
+      .payment-box{
+        margin-top:250px;
+      }
+
+      .neymar{
+        left:-180px;
+        height:65vh;
+      }
+
+      h1{
+        font-size:40px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ESTÁDIO -->
+
+  <img src="estadio.jpg" class="stadium">
+
+  <!-- OVERLAY -->
+
+  <div class="overlay"></div>
+
+  <!-- LUZ VERDE -->
+
+  <div class="green-light"></div>
+
+  <!-- NEYMAR -->
+
+  <img src="ney.png" class="neymar">
+
+  <!-- CONTAINER -->
+
+  <div class="container">
+
+    <div class="payment-box">
+
+      <div class="tag">
+        EFOOTBALL BRASIL
+      </div>
+
+      <h1>
+        PAGAMENTO <span>PIX</span>
+      </h1>
+
+      <p class="desc">
+        Realize o pagamento do seu VIP utilizando a chave PIX abaixo.
+        Após o pagamento, envie o comprovante no Discord.
+      </p>
+
+      <div class="pix-area">
+
+        <div class="pix-title">
+          CHAVE PIX
+        </div>
+
+        <div class="pix-key" id="pix">
+          17e1302c-3da8-4a97-8bc8-39f5deb72d4e
+        </div>
+
+      </div>
+
+      <button onclick="copiarPix()">
+        COPIAR CHAVE PIX
+      </button>
+
+      <div class="secure">
+        🔒 Pagamento rápido e seguro
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    function copiarPix(){
+
+      navigator.clipboard.writeText(
+        "17e1302c-3da8-4a97-8bc8-39f5deb72d4e"
+      );
+
+      alert("Chave PIX copiada!");
+
+    }
+
+  </script>
+
+</body>
+
+</html>
